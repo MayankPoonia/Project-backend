@@ -1,43 +1,26 @@
-// require('dotenv').config({path: './env'})
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
-dotenv.config({
-  path: "../.env.sample",
-});
+// Get the current directory in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables from .env.sample
+dotenv.config({ path: path.join(__dirname, "../.env.sample") });
+
+console.log("MONGODB_URI: ", process.env.MONGODB_URI);
 
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
-      console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
+      console.log(`⚙️ Server is running at port: ${process.env.PORT}`);
     });
   })
   .catch((err) => {
-    console.log("MONGO db connection failed !!! ", err);
+    console.log("MONGO db connection failed: ", err);
   });
-
-/*
-import express from "express"
-const app = express()
-( async () => {
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        app.on("errror", (error) => {
-            console.log("ERRR: ", error);
-            throw error
-        })
-
-        app.listen(process.env.PORT, () => {
-            console.log(`App is listening on port ${process.env.PORT}`);
-        })
-
-    } catch (error) {
-        console.error("ERROR: ", error)
-        throw err
-    }
-})()
-
-*/
