@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 const app = express();
 
-// Get the current directory in ES modules
+// Get the current directory in ES modules..
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
