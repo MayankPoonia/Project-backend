@@ -55,7 +55,7 @@ const userSchema = new Schema(
 
 
 userSchema.pre("save", async function (next) {
-    if(!this.isModified("password")) return next(); //agar password midified nahi hai to direct next pe jao 
+    if(!this.isModified("password")) return next(); //agar password modified nahi hai to direct next pe jao 
 
 
     this.password = bcrypt.hash(this.password, 10)  //encrypt password ,take rounds 10
