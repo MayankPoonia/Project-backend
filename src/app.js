@@ -16,4 +16,11 @@ app.use(express.status("public"))
 app.use(cookieParser())
 
 
+//routes import 
+import userRouter from './routes/user.routes'
+
+
+//routes declaration
+app.use("/api/v1/users", userRouter)  //iske baad control user.routed.js me /register pe jayega 
+
 export { app }
