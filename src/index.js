@@ -1,10 +1,9 @@
-import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const app = express();
+import { app } from "./app.js";
 
 // Get the current directory in ES modules..
 const __filename = fileURLToPath(import.meta.url);
